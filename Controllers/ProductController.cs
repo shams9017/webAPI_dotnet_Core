@@ -7,17 +7,15 @@ using Products.Data;
 using Products.Repo;
 using Products.Services;
 
+// call the repo using this controller
+//link controller to database
 
 namespace InventoryWebAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
-    {
-        // call the repo using this controller
-        //link controller to database
- 
-
+    {   
         readonly IProduct db;
        
         public ProductController(IProduct _db)
@@ -35,12 +33,7 @@ namespace InventoryWebAPI.Controllers
             db.Save(data);
 
             return Ok(data);
-
-
         }
-
-
-
 
         [HttpGet("{Id}")]
         public IActionResult GetProduct(int? Id)
@@ -57,7 +50,7 @@ namespace InventoryWebAPI.Controllers
         }
    
 
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         public IActionResult Delete(int? Id)
         {
             db.Delete(Id);
